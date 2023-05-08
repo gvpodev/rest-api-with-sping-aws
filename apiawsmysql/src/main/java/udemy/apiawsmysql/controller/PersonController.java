@@ -3,7 +3,7 @@ package udemy.apiawsmysql.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import udemy.apiawsmysql.model.Person;
+import udemy.apiawsmysql.data.vo.v1.PersonVO;
 import udemy.apiawsmysql.service.PersonService;
 
 import java.util.List;
@@ -19,22 +19,22 @@ public class PersonController {
     }
 
     @PostMapping
-    public Person createPerson(@RequestBody Person person) {
+    public PersonVO createPerson(@RequestBody PersonVO person) {
         return this.service.createPerson(person);
     }
 
     @GetMapping
-    public List<Person> findAllPerson() {
+    public List<PersonVO> findAllPerson() {
         return this.service.findAllPerson();
     }
 
     @GetMapping("/{id}")
-    public Person findPersonById(@PathVariable Long id) {
+    public PersonVO findPersonById(@PathVariable Long id) {
         return this.service.findPersonById(id);
     }
 
     @PutMapping
-    public Person updatePerson(@RequestBody Person person) {
+    public PersonVO updatePerson(@RequestBody PersonVO person) {
         return this.service.updatePerson(person);
     }
 
@@ -45,9 +45,9 @@ public class PersonController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/order-by-gender/{address}")
-    public List<Person> findAllPersonOrderedByGender(@PathVariable String address) {
-        return this.service.findAllPersonByAddressOrderedByGender(address);
-    }
+//    @GetMapping("/order-by-gender/{address}")
+//    public List<Person> findAllPersonOrderedByGender(@PathVariable String address) {
+//        return this.service.findAllPersonByAddressOrderedByGender(address);
+//    }
 
 }
