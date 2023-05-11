@@ -4,12 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import udemy.apiawsmysql.data.vo.v1.PersonVO;
+import udemy.apiawsmysql.data.vo.v2.PersonVOV2;
 import udemy.apiawsmysql.service.PersonService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/person")
+@RequestMapping("/person")
 public class PersonController {
     private final PersonService service;
 
@@ -21,6 +22,11 @@ public class PersonController {
     @PostMapping
     public PersonVO createPerson(@RequestBody PersonVO person) {
         return this.service.createPerson(person);
+    }
+
+    @PostMapping(value = "/v2")
+    public PersonVOV2 createPersonV2(@RequestBody PersonVOV2 person) {
+        return this.service.createPersonV2(person);
     }
 
     @GetMapping
