@@ -1,6 +1,7 @@
 package udemy.apiawsmysql.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import udemy.apiawsmysql.data.vo.v1.PersonVO;
@@ -19,27 +20,32 @@ public class PersonController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public PersonVO createPerson(@RequestBody PersonVO person) {
         return this.service.createPerson(person);
     }
 
-    @PostMapping(value = "/v2")
+    @PostMapping(value = "/v2",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public PersonVOV2 createPersonV2(@RequestBody PersonVOV2 person) {
         return this.service.createPersonV2(person);
     }
 
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<PersonVO> findAllPerson() {
         return this.service.findAllPerson();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public PersonVO findPersonById(@PathVariable Long id) {
         return this.service.findPersonById(id);
     }
 
-    @PutMapping
+    @PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public PersonVO updatePerson(@RequestBody PersonVO person) {
         return this.service.updatePerson(person);
     }

@@ -10,7 +10,7 @@ public class Person {
     }
 
     @Id
-    @Column(name = "person_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
